@@ -1,18 +1,34 @@
-const button = document.querySelector("button")
-const main = document.querySelector("main")
 
-button.addEventListener("click", buscarUsuarios)
+const header = document.querySelector("header ul")
 
-async function buscarUsuarios() {
-    const users = await fetch("http://localhost:3333").then((response) => response.json())
-    
-    users.map(user => {
-        main.innerHTML += `
-         <section>
-            <h3>Nome: ${user.name}</h3>
-            <p>Idade: ${user.age} anos</p>
-            <p>E-mail: ${user.email}</p>
-        </section>
-        `
-    })
+function init() {
+    const user = JSON.parse(sessionStorage.getItem("user"))
+
+    if (user) {
+
+    header.innerHTML += `
+    <li>Usuários: ${user.name}</li>
+    <li><button id="logout">Sair</button></li>
+    `
+
+    const logoutButton = document.querySelector("#logout")
+    logoutButton.addEventListener("click", logout)
+    return
+}
+
+ header.innerHTML += `
+   <li>
+     <a href="./pages/login.html">Login</a>
+    </li>
+    `
+}
+
+init()
+
+
+function logout() {
+
+    sessionStorage.removeItem("user")
+    alert("Você deslogou. Até mais. Volte mais vezes!")
+    window.location.reload()
 }
