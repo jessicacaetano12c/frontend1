@@ -20,7 +20,7 @@ async function sendUser(event) {
         password
     }
 //toda vez que for guardar uma informação numa variavel que vem do banco de dados tem que usar async e await
-    const response = await fetch("http://localhost:3333/cadastrar", { //isso é uma request
+    const response = await fetch("https://backend-02mc-khaki.vercel.app/cadastrar", { //isso é uma request
         method: "POST", //um objeto que esta enviando a informaçao pro backend / nessa linha esta sendo declarado o metodo
         headers: {//se coloca o tipo da informaçaõ
             "Content-Type": "application/json"//esta dizendo que o tipo de informaçao que esta sendo enviado é do tipo JSON
